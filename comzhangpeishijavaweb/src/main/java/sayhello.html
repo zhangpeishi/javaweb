@@ -3,18 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>jquery_say_hello</title>
+    <script src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
-        window.onload=funtion()
-        {
-            var btnObj = document.getElementById("button");
-            alert(btnObj);
-            btnObj.onclick=function () {
-                alert(btnObj);
-            }
-        }
+        $(function () {//表示页面加载完成之后 window.onload = function(){}
+            // var $btnObj = $("#button");//表示按ID查询对象
+            // $btnObj.click(function () {
+            //     alert("jquery的单击事件")
+            // });
+            // alert($("button").length);
+            //
+            // var btn01 = document.getElementById("btn01")
+            // alert($(btn01));//把dom对象转成jQuery对象
+            //
+            // var btn = $("#button");
+            // for(var i = 0;i < btn.length;i++){
+            //     alert(btn[i]);
+            // }
+            //
+            document.getElementById("testdiv").innerHTML = "这是dom对象的属性";
+
+            $("#testdiv").click(function () {
+
+                alert("click是jQuery对象的方法");
+            });
+            var button = document.getElementById("button");
+            alert($(button)[0]);
+            alert($("button"));
+
+        });
     </script>
 </head>
 <body>
-    <button id = "button">sayhello</button>
+    <button id="button">sayhello</button>
+    <button id="btn01">按钮一</button>
+    <button>按钮二</button>
+    <button>按钮三</button>
+    <div id = "testdiv">
+        <span>1</span>
+        <span>2</span>
+    </div>
+
 </body>
 </html>

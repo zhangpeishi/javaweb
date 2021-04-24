@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            alert($("input[name != 'newsletter']").length);
+        });
+    </script>
+</head>
+<body>
+
+    <input type="checkbox" name="newsletter" value="Hot Fuzz"/>
+    <input type="checkbox" name="newsletter" value="Hot Fuzz"/>
+    <input type="checkbox" value="Evil Plans"/>
+
+</body>
+</html>

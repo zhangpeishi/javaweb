@@ -6,15 +6,111 @@
     <script type="text/javascript" src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            alert($("input[name != 'newsletter']").length);
+            $("#addEmpbutton").click(function () {
+
+                var $name = $("#empname").val();
+                var $email = $("#empemail").val();
+                var $salary = $("#empsalary").val();
+
+                var $obj = $("<tr>\n" +
+                    "            <td>"+$name+"</td>\n" +
+                    "            <td>"+$email+"</td>\n" +
+                    "            <td>"+$salary+"</td>\n" +
+                    "            <td><a href=\"deleteEmpid-003\">Delete</a></td>\n" +
+                    "        </tr>");
+                $obj.appendTo("#employeetable");
+
+                $obj.find("a").click(function () {
+                    var $name = $obj.find("td:first").text();
+                    if (confirm("确定要删除" + $name + "吗？")) {
+                        $obj.remove();
+
+                    }
+                    return false;//阻止标签跳转
+                });
+            
+        });
+
+            //页面加载完成之后就读取了三个标签
+            $("a").click(function () {
+
+
+                $obj = $(this).parent().parent();
+                var $name = $obj.find("td:first");
+                if(confirm("确定要删除"+$name+"吗？")){
+                    $obj.remove();
+
+
+                }
+
+
+                return false;//阻止标签跳转
+            });
+
         });
     </script>
 </head>
 <body>
+<div id="div4">
 
-    <input type="checkbox" name="newsletter" value="Hot Fuzz"/>
-    <input type="checkbox" name="newsletter" value="Hot Fuzz"/>
-    <input type="checkbox" value="Evil Plans"/>
+    <table id="employeetable" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>
+
+            </th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>8000</td>
+            <td> <a href="deleteEmpid-001">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Jerry</td>
+            <td>jerry@jerry.com</td>
+            <td>12000</td>
+            <td><a href="deleteEmpid-002">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>bob@bob.com</td>
+            <td>13000</td>
+            <td><a href="deleteEmpid-003">Delete</a></td>
+        </tr>
+
+
+
+
+    </table>
+
+
+</div>
+<div id="div-1">
+    <h4>添加新员工</h4>
+    <table>
+        <tr>
+            <td class="inp">name:</td>
+            <td><input type="text" id="empname" name="empname"/></td>
+        </tr>
+        <tr>
+            <td class="inp">email:</td>
+            <td><input type="text" id="empemail" name="empemail"/></td>
+        </tr>
+        <tr>
+            <td class="inp">salary:</td>
+            <td><input type="text" id="empsalary" name="empsalary"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="addEmpbutton" value="abc">submit</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
 
 </body>
 </html>

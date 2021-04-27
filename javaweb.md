@@ -282,15 +282,191 @@ prop()可以设置和获取属性的值 只推荐操作checked,readOnly selected
 
 
 
+### jQuery的动画操作
+
+1. 基本动画 show() 将隐藏的文件显示hide()将显示的文件隐藏 toggle()显示的文件隐藏，隐藏的显示 有两个参数，第一个参数是动画的时间，以毫秒为单位，第 二个参数是回调函数 表示动画完成之后的执行
+
+2. 淡入淡出动画
+
+   
 
 
 
+### jQuery事件处理方法
 
-
+![image-20210426152546269](/Users/zhangpeishi/IdeaProjects/javaweb/messages/image-20210426152546269.png)
 
 ​	
 
+### 事件冒泡
+
+父子元素同时绑定一个事件，当子元素触发，父元素也触发
+
+ ![image-20210426152907068](/Users/zhangpeishi/IdeaProjects/javaweb/messages/image-20210426152907068.png)
+
+在子元素里面return false即可
+
+JavaScript事件对象
+
+事件对象，是封装有触发事件信息的一个JavaScript对象 我们重点关心怎么拿到这个JavaScript的事件对象以及使用。
+
+获取JavaScript事件
+
+jQuery 获取事件对象
+
+$("#areaDiv").click(function(event){
+
+Console.log("");
+
+});
+
+$("#areaDiv").bind("mouseover mouseout",function(){
+
+if(event.type =  'mouseover'){
+
+Console.log("");
+
+}
+
+});
+
+![image-20210426204413821](/Users/zhangpeishi/IdeaProjects/javaweb/messages/image-20210426204413821.png)
+
+# xml
+
+## xml语法
+
+1. 文档声明
+2. 元素（标签）
+3. xml属性
+4. xml注释
+5. 文本区域（CDATA区)
+
+## 使用dom4j解析xml
+
+ ### 1.配置dom4j
+
+​	web-inf 下面 lib中传入jar包
+
+### 2.获取document对象
+
+​	
+
+```xml
+//1.读取xml文件，获取document对象
+SAXReader reader  = new SAXReader();
+Document document  = reader.read(new File(""));
+//2.读取xml形式的文本，得到document对象
+String text = "<csdn></csdn>";
+Document document = DocumentHelper.parseText(text);
+//3.主动创建Document对象
+Document document = DocumentHelper.createDocument();
+Element root = document.addElement("csdn");//创建根节点
+```
 
 
- 
+
+### 3.节点对象操作方法
+
+```xml
+//1.获取文档的根节点
+Element root = document.getRootElement();
+//2.取得某个节点的子节点
+Element element = node.getElement("四大名著");
+//3.取得节点的文字
+String text = node.getText();
+//4.取得某节点下名为“CSDN”的子节点，并遍历
+List nodes = rootElm.getElements("CSDN");
+for(Iterator it = nodes.iterator();it.hasNext();){
+	Element element = (Element)it.next();
+	//do something
+}
+//5.对根节点下的所有子节点进行遍历
+for(Iterator it = root.elementIterator();it.hasNext();){
+		Element element = (Element)it.next();
+	//do something
+}
+//6.在某节点下添加子节点
+Element element = node.addElement("朝代");
+//7.设置节点文字
+element.setText("明朝")；
+//8.删除某节点
+//childElement是待删除的节点,parentElement是其父节点  
+parentElement.remove(childElment);
+//9.添加一个CDATA节点
+Element e = infoElement.addElement("content");
+e.addCDTA("CDATA区域");
+```
+
+
+
+### 4.节点对象的属性操作方法
+
+```xml
+//1.取得某节点下的某属性
+Element root = Document.getRootElement();
+Attribute attribute = root.attribute("id");
+//2.取得属性的文字
+String text = attribute.getText();
+//3.删除某属性
+Attribute attribute = root.attribute("size");
+root.remove(attribute);
+//4.遍历某节点的所有属性
+Element root = document.getRootElement();
+for(Iterator it = root.attributeIterator();it.hasIterator();){
+	Attribute attribute = (Attribute)it.hasNext();
+	//do something
+}
+//5.设置某节点的文字和属性
+element.addAttribute("name","zhangtingting");
+//6.设置属性的文字
+Attribute attribute = root.attribute("name"); attribute.setText("zhangtingting");
+```
+
+
+
+### 5.将文档写入xml文件
+
+```xml
+//1.文档中全为英文，不设置编码，直接写入
+XMLWriter writer = new XMLWriter(new FileWriter("test.xml"));
+writer.write(document);
+writer.close();
+//2.文档中含有中文，设置编码格式
+OutputFormat format = OutputFormat.createPrettyPrint();
+format.setEcoding("UTF-8");
+XMLWriter writer = new XMLWriter(new FileWriter("output.xml"),format);
+writer.write(document);
+writer.close();
+```
+
+
+
+### 6.字符串与xml转换
+
+```
+1.将字符串转化为XML
+      String text = "<csdn> <java>Java班</java></csdn>";
+      Document document = DocumentHelper.parseText(text);
+2.将文档或节点的XML转化为字符串.
+       SAXReader reader = new SAXReader();
+       Document   document = reader.read(new File("csdn.xml"));            
+       Element root=document.getRootElement();    
+       String docXmlText=document.asXML();
+       String rootXmlText=root.asXML();
+       Element memberElm=root.element("csdn");
+       String memberXmlText=memberElm.asXML();
+```
+
+### 练习
+
+https://blog.csdn.net/redarmy_chen/article/details/12969219
+
+# 部署javaweb到Tomcat的两种方法
+
+
+
+ [javaweb项目环境配置.pdf](../../Desktop/javaweb项目环境配置.pdf) 
+
+
 
